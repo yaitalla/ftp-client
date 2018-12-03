@@ -1,0 +1,8 @@
+.flexContainer {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid silver;
+  height: 100vh;
+  justify-content: flex-start;
+
+}
