@@ -8,6 +8,10 @@ const Navigation = () =>
 
   <ul style={noBullet}>
 
+    <li style={item}>
+      <Link to={'/signup'}><button style={btn}> signup </button> </Link>
+    </li>
+
       <li style={item}>
         <Link to={'/login'}><button style={btn}> login </button> </Link>
       </li>

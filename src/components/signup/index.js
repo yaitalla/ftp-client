@@ -1,16 +1,16 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import AuthForm from './AuthForm';
+import Form from './Form';
 import { flexwrap } from './style';
 
 
-const Auth = ({ history }) =>
+const Signup = ({ history }) =>
 <div style={flexwrap}>
-	<AuthPage history={history} />
+	<SignupPage history={history} />
 </div>
 
 
-class AuthPage extends React.Component {
+class SignupPage extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -41,7 +41,7 @@ class AuthPage extends React.Component {
 
 	render() {
 		return (
-			<AuthForm
+			<Form
 				onSubmit={this.processForm}
 				onChange={this.updateUser}
 				errors={this.state.errors}
@@ -50,4 +50,4 @@ class AuthPage extends React.Component {
 	}
 }
 
-export default withRouter(Auth);
+export default withRouter(Signup);

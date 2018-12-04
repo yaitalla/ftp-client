@@ -1,10 +1,11 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import axios from 'axios';
 import { Link } from 'react-router';
 import { flexForm, flexUl, formTitle, input, submitBtn,
 		flexContainer, flexInfo, infoTitle } from './style';
 
-const AuthForm = ({
+const loginFrom = ({
 	onSubmit,
 	onChange,
 	errors,
@@ -12,10 +13,10 @@ const AuthForm = ({
 }) => (
 
 	<div style={flexContainer}>
-			<form  style={flexForm} onSubmit={onSubmit} method="post" action="http://localhost:4000/users/register">
+			<form  style={flexForm} onSubmit={onSubmit} method="post" action="http://localhost:4000/users/login">
 				<ul style={flexUl}>
 					<li>
-						<h4 style={formTitle} >Authentication</h4>
+						<h4 style={formTitle} >Signup</h4>
 					</li>
 					<li>
 						<input
@@ -54,11 +55,11 @@ const AuthForm = ({
 
 );
 
-AuthForm.propTypes = {
+loginFrom.propTypes = {
 	onSubmit: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
 	errors: PropTypes.object.isRequired,
 	user: PropTypes.object.isRequired
 };
 
-export default AuthForm;
+export default loginFrom;
