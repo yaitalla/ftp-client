@@ -20,6 +20,10 @@ const Navigation = () =>
       <Link to={'/ftp'}><button style={btn}> ftp </button> </Link>
     </li>
 
+    <li style={item}>
+      <Link to={'/ppc'}><button style={btn}> ppc </button> </Link>
+    </li>
+
   </ul>
 </div>
 

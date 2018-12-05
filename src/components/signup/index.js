@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Form from './Form';
 import { flexwrap } from './style';
+import axios from 'axios';
 
 
 const Signup = ({ history }) =>
@@ -27,9 +28,22 @@ class SignupPage extends React.Component {
 	}
 
 	processForm(event) {
+		const { history } = this.props;
 		event.preventDefault();
-		console.log('email:', this.state.user.email);
-		console.log('password:', this.state.user.password);
+		const data = {
+			'email': this.state.user.email,
+			'password': this.state.user.password,
+			'headers': {
+				"Access-Control-Allow-Origin": "*"
+			}
+		}
+		console.log(data);
+		axios.post("http://localhost:4000/api/user/register/", data).then((res) => {
+			console.log(res.headers)
+			history.push('/');
+		}).catch((err) => {
+			console.log('YASLOG', err)
+		});
 	}
 
 	updateUser(event) {

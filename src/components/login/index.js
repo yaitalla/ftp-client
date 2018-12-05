@@ -28,12 +28,9 @@ class LoginPage extends React.Component {
 	}
 
 	processForm(event) {
+		const { history } = this.props;
+
 		event.preventDefault();
-		const formData = new FormData();
-		const headers = {};
-		formData.append('email', this.state.user.email);
-		formData.append('headers', headers);
-		formData.append('password', this.state.user.password);
 		const data = {
 			'email': this.state.user.email,
 			'password': this.state.user.password,
@@ -41,9 +38,12 @@ class LoginPage extends React.Component {
 				"Access-Control-Allow-Origin": "*"
 			}
 		}
-		console.log(data);
+	//	console.log(this.props);
 		axios.post("http://localhost:4000/api/user/login/", data).then((res) => {
-			console.log('YASLOG', res);
+			//console.log(res.headers)
+			//history.push('/ftp');
+			console.log('YAS LOG', res)
+
 		}).catch((err) => {
 			console.log('YASLOG', err)
 		});

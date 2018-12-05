@@ -5,12 +5,14 @@ import Login from '../login';
 import Signup from '../signup';
 import Ftp from '../ftp';
 import Navigation from '../navigation/';
-//import Home from '../home';
+import Game from '../ppc';
 
 const Global = () =>
   <Router>
     <div style={divGlobal}>
       <Navigation/>
+      <Game/>
+      <Route exact path={'/ppc'} component={Game} />
       <Route exact path={'/login'} component={Login} />
       <Route exact path={'/signup'} component={Signup} />
       <Route exact path={'/ftp'} component={Ftp} />
