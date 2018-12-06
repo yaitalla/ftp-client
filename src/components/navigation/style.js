@@ -22,3 +22,8 @@ export const btn = {
   boxShadow: "10px 10px 50px 2px rgb(100, 91, 124)",
   backgroundColor: "rgb(149, 120, 204)"
 }
+
+export const img = {
+  height: "100%",
+  width: "100%"
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { flexContainer, noBullet, item, btn } from './style';
+import { flexContainer, noBullet, item, img, btn } from './style';
+import pic from './shifumi.png';
 
 const Navigation = () =>
 
@@ -21,7 +22,7 @@ const Navigation = () =>
     </li>
 
     <li style={item}>
-      <Link to={'/ppc'}><button style={btn}> ppc </button> </Link>
+      <Link to={'/ppc'}><button style={btn}> <img style={img} src={pic}/> </button> </Link>
     </li>
 
   </ul>

@@ -2,14 +2,14 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import axios from 'axios';
 import { Link } from 'react-router';
-import { flexContainer, parts,
-  btnWrapper, hr, icon, btn } from './style';
+import { flexContainer, parts, hiddenHack,
+  btnWrapper, hr, icon, btn, img } from './style';
+import shi from './shi.png';
+import fu from './fu.png';
+import mi from './mi.png';
 
 const Game = ({
-	onSubmit,
-	onChange,
-	errors,
-	user
+	choice
 }) => (
 
 	<div style={flexContainer}>
@@ -19,12 +19,11 @@ const Game = ({
         <h2>Player</h2>
         <hr style={hr}/>
       </div>
-      <div style={icon}>
-      </div>
+      <div style={icon}></div>
       <div style={btnWrapper}>
-        <button style={btn}></button>
-        <button style={btn}></button>
-        <button style={btn}></button>
+        <button style={btn}><img src={shi} style={img}/></button>
+        <button style={btn}><img src={fu} style={img}/></button>
+        <button style={btn}><img src={mi} style={img}/></button>
       </div>
     </div>
 
@@ -40,6 +39,8 @@ const Game = ({
         <h2>Computer</h2>
         <hr style={hr}/>
       </div>
+      <div style={icon}></div>
+      <div style={hiddenHack}></div>
     </div>
 	</div>
 
