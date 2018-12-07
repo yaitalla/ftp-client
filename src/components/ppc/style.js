@@ -49,6 +49,10 @@ export const parts = {
   borderRadius: "10px"
 }
 
+export const hr = {
+  
+}
+
 export const img = {
   height: "100%",
   width: "100%"
@@ -60,7 +64,4 @@ export const btn = {
   height: "40%",
   cursor: "pointer",
   margin: "5px"
-}
-
-export const hr = {
 }
