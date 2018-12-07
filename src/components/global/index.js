@@ -11,6 +11,7 @@ const Global = () =>
   <Router>
     <div style={divGlobal}>
       <Navigation/>
+      <Game/>
       <Route exact path={'/ppc'} component={Game} />
       <Route exact path={'/login'} component={Login} />
       <Route exact path={'/signup'} component={Signup} />

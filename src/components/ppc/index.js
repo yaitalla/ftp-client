@@ -20,13 +20,63 @@ class GamePage extends React.Component {
     super(props);
     this.state = {
       playerChoice: shifumi,
-      computChoice: {}
+      computChoice: shifumi,
+      scoreMsg: "hello, my name is eminem"
     };
     this.updatePlayer = this.updatePlayer.bind(this);
-  //  this.updateComput = this.updateComput.bind(this);
+    this.updateComput = this.updateComput.bind(this);
+  }
+  stringer(rand){
+    return (rand === shi ? "Rock" : (rand === fu ? "Cisors" : "Paper"));
+  }
+  setWinner(player, comput){
+    let ret = "";
+    if (player === 'Rock') {
+      if (comput === 'Rock') {
+        ret = 'egalité';
+      } else {
+        ret = (comput === 'Paper' ? 'Paper, you loose'
+          : 'Cisors, you win');
+      }
+    }
+    if (player === 'Paper') {
+      if (comput === 'Paper') {
+        ret = 'egalité';
+      } else {
+        ret = (comput === 'Cisors' ? 'Cisors, you loose'
+          : 'Rock, you win');
+      }
+    }
+    if (player === 'Cisors'){
+      if (comput === 'Cisors') {
+        ret = 'egalité';
+      } else {
+        ret = (comput === 'Rock' ? 'Rock, you loose'
+          : 'Paper, you win');
+      }
+    }
+    return ret;
+  }
+
+  updateComput(playerChoice){
+    const pos = [ shi, fu, mi ];
+    const rand = pos[Math.floor(Math.random()*pos.length)];
+    const computerMove = this.stringer(rand);
+    const playerMove = this.stringer(playerChoice);
+    const score = this.setWinner(playerMove, computerMove);
+    setTimeout(() => {
+      this.setState({
+        computChoice: rand,
+        scoreMsg: `...${score}`
+      });
+    }, 1000);
   }
   updatePlayer(event){
-    this.setState({ playerChoice: event.target.value})
+    this.setState({
+      scoreMsg: `you played ${this.stringer(event.target.value)} and Computer played...`,
+      playerChoice: event.target.value,
+    });
+    this.updateComput(this.state.playerChoice);
   }
   render() {
     return 	(
@@ -51,6 +101,7 @@ class GamePage extends React.Component {
           <div>
             <h2>Score</h2>
             <hr style={hr}/>
+            {this.state.scoreMsg}
           </div>
         </div>
 
@@ -59,7 +110,9 @@ class GamePage extends React.Component {
             <h2>Computer</h2>
             <hr style={hr}/>
           </div>
-          <div style={icon}></div>
+          <div style={icon}>
+            <img style={img} src={this.state.computChoice}/>
+          </div>
           <div style={hiddenHack}></div>
         </div>
     	</div>
