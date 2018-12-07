@@ -2,16 +2,34 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import axios from 'axios';
 import { Link } from 'react-router';
+import Icon from './icon';
 import { flexContainer, parts, hiddenHack,
   btnWrapper, hr, icon, btn, img } from './style';
 import shi from './shi.png';
 import fu from './fu.png';
 import mi from './mi.png';
 
-const Game = ({
-	choice
-}) => (
+const Game = ({ history }) =>
+<div>
+  <GamePage history={history} />
+</div>
 
+class GamePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      playerChoice: '',
+      computChoice: ''
+    };
+    this.updatePlayer = this.updatePlayer.bind(this);
+  //  this.updateComput = this.updateComput.bind(this);
+  }
+  updatePlayer(event){
+
+  }
+}
+
+(
 	<div style={flexContainer}>
 
     <div style={parts}>
