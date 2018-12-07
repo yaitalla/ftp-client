@@ -27,29 +27,21 @@ class GamePage extends React.Component {
     this.updateComput = this.updateComput.bind(this);
   }
   stringer(rand){
-    return (rand === shi ? "Rock" : (rand === fu ? "Cisors" : "Paper"));
+    if (rand === shi)
+      return 'Rock';
+    return (rand === fu ? 'Paper' : 'Cisors');       
   }
   setWinner(player, comput){
     let ret = "";
-    if (player === 'Rock') {
-      if (comput === 'Rock') {
-        ret = 'egalité';
-      } else {
+    if (player === comput) {
+      ret = 'egalité'
+    } else {
+      if (player === 'Rock'){
         ret = (comput === 'Paper' ? 'Paper, you loose'
           : 'Cisors, you win');
-      }
-    }
-    if (player === 'Paper') {
-      if (comput === 'Paper') {
-        ret = 'egalité';
-      } else {
+      } else if (player === 'Paper'){
         ret = (comput === 'Cisors' ? 'Cisors, you loose'
           : 'Rock, you win');
-      }
-    }
-    if (player === 'Cisors'){
-      if (comput === 'Cisors') {
-        ret = 'egalité';
       } else {
         ret = (comput === 'Rock' ? 'Rock, you loose'
           : 'Paper, you win');
@@ -63,6 +55,7 @@ class GamePage extends React.Component {
     const rand = pos[Math.floor(Math.random()*pos.length)];
     const computerMove = this.stringer(rand);
     const playerMove = this.stringer(playerChoice);
+    console.log(playerMove, computerMove)
     const score = this.setWinner(playerMove, computerMove);
     setTimeout(() => {
       this.setState({
