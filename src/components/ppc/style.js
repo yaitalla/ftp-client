@@ -9,6 +9,10 @@ export const flexContainer = {
   width: "100%"
 }
 
+export const scoreHist = {
+  alignSelf: "space-around"
+}
+
 export const icon = {
   backgroundColor: "#c1c1c1",
   width: "80%",
@@ -46,11 +50,12 @@ export const parts = {
   backgroundColor: "rgb(199, 219, 249)",
   width: "30%",
   boxShadow: "5px 5px 25px 2px rgb(100, 91, 124)",
-  borderRadius: "10px"
+  borderRadius: "10px",
+  textAlign: "center"
 }
 
 export const hr = {
-  
+
 }
 
 export const img = {

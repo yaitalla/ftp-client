@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router';
 //import Icon from './icon';
 import { flexContainer, parts, hiddenHack,
-  btnWrapper, hr, icon, btn, img } from './style';
+  btnWrapper, hr, icon, btn, img, scoreHist } from './style';
 import shi from './shi.png';
 import fu from './fu.png';
 import mi from './mi.png';
@@ -22,7 +22,7 @@ class GamePage extends React.Component {
       score: [],
       playerChoice: shifumi,
       computChoice: shifumi,
-      scoreMsg: "hello, my name is eminem"
+      scoreMsg: "Play a new move to see the result"
     };
     this.updatePlayer = this.updatePlayer.bind(this);
     this.updateComput = this.updateComput.bind(this);
@@ -60,7 +60,10 @@ class GamePage extends React.Component {
           : 'Paper, you win');
       }
     }
-    this.updateScore(ret.substr(ret.length - 5));
+    setTimeout(() => {
+      this.updateScore(ret.substr(ret.length - 5));
+    }, 1000);
+
     return ret;
   }
 
@@ -113,10 +116,9 @@ class GamePage extends React.Component {
             <hr style={hr}/>
 
             {Object.keys(this.state.score).map(key =>
-          <div className="grid-item" key={key}>{this.state.score[key]}</div>
+          <div style={scoreHist} className="grid-item" key={key}>{this.state.score[key]}</div>
             )}
 
-            {this.state.score}
             {this.state.scoreMsg}
           </div>
         </div>
