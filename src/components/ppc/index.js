@@ -19,18 +19,31 @@ class GamePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      score: [],
       playerChoice: shifumi,
       computChoice: shifumi,
       scoreMsg: "hello, my name is eminem"
     };
     this.updatePlayer = this.updatePlayer.bind(this);
     this.updateComput = this.updateComput.bind(this);
+    this.updateScore = this.updateScore.bind(this);
   }
   stringer(rand){
-    if (rand === shi)
+    if (rand === shi) {
       return 'Rock';
-    return (rand === fu ? 'Paper' : 'Cisors');       
+    }
+    return (rand === fu ? 'Cisors' : 'Paper');
   }
+
+  updateScore(playerWin){
+    const score = playerWin === "u win" ? "Winner - Looser" : "Looser - Winner";
+    const newScore = this.state.score;
+    newScore.push(score);
+    this.setState({
+      score: newScore
+    });
+  }
+
   setWinner(player, comput){
     let ret = "";
     if (player === comput) {
@@ -47,15 +60,19 @@ class GamePage extends React.Component {
           : 'Paper, you win');
       }
     }
+    this.updateScore(ret.substr(ret.length - 5));
     return ret;
   }
+
+
 
   updateComput(playerChoice){
     const pos = [ shi, fu, mi ];
     const rand = pos[Math.floor(Math.random()*pos.length)];
     const computerMove = this.stringer(rand);
     const playerMove = this.stringer(playerChoice);
-    console.log(playerMove, computerMove)
+    //console.log(playerChoice, rand);
+    //console.log(playerMove, computerMove)
     const score = this.setWinner(playerMove, computerMove);
     setTimeout(() => {
       this.setState({
@@ -69,7 +86,7 @@ class GamePage extends React.Component {
       scoreMsg: `you played ${this.stringer(event.target.value)} and Computer played...`,
       playerChoice: event.target.value,
     });
-    this.updateComput(this.state.playerChoice);
+    this.updateComput(event.target.value);
   }
   render() {
     return 	(
@@ -94,6 +111,12 @@ class GamePage extends React.Component {
           <div>
             <h2>Score</h2>
             <hr style={hr}/>
+
+            {Object.keys(this.state.score).map(key =>
+          <div className="grid-item" key={key}>{this.state.score[key]}</div>
+            )}
+
+            {this.state.score}
             {this.state.scoreMsg}
           </div>
         </div>
