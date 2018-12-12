@@ -4,21 +4,20 @@ import { flexContainer, parts, hiddenHack,
   btnWrapper, hr, icon, btn, img, scoreHist } from './style';
 import shi from './shi.png';
 import fu from './fu.png';
+import { computerChoice } from '../../actions';
+
 import mi from './mi.png';
 import shifumi from '../navigation/shifumi.png';
 import { bindActionCreators } from "redux";
 
-const Computer = ({ history }) =>
-<div style={parts}>
-  <ComputerPage history={history} />
-</div>
+
 
 class ComputerPage extends React.Component {
-  componentDidMount() {
-    const {computerChoice} = this.props;
-  }
   constructor(props) {
     super(props);
+    store.subscribe(() => {
+      this.setState({computerChoice: store.getState().computer.choice})
+    })
     this.state = {
       computerChoice: shifumi,
     };
@@ -27,7 +26,7 @@ class ComputerPage extends React.Component {
   render() {
     const {computerChoice} = this.props
     return 	(
-      <div>
+      <div  style={parts}>
         <div>
           <h2>Computer</h2>
           <hr style={hr}/>
@@ -43,11 +42,7 @@ class ComputerPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  choice: state.computer
+  computerChoicechoice: state.computerChoice
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  computerChoice: (choice) => dispatch({type: 'COMPUTER_CHOICE', choice})
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Computer);
+export default connect(mapStateToProps)(ComputerPage);

@@ -2,17 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { flexContainer, parts, hiddenHack,
   btnWrapper, hr, icon, btn, img, scoreHist } from './style';
-import { computerChoice } from '../../actions';
+import { computerChoice, playerChoice } from '../../actions';
 import {bindActionCreators} from 'redux';
 import shi from './shi.png';
 import fu from './fu.png';
 import mi from './mi.png';
 import shifumi from '../navigation/shifumi.png';
-
-const Player = () =>
-<div style={parts}>
-  <PlayerPage  />
-</div>
 
 class PlayerPage extends React.Component {
   constructor(props) {
@@ -29,25 +24,25 @@ class PlayerPage extends React.Component {
   computer(){
     const pos = [ shi, fu, mi ];
     const rand = pos[Math.floor(Math.random()*pos.length)];
+    this.setState({cc: rand})
     const computerMove = this.stringer(rand);
     setTimeout(() => {
         console.log('ordi: ', computerMove);
-
+        this.props.computerChoice(rand)
     }, 1000);
     return computerMove;
   }
   updatePlayer(event){
     event.preventDefault();
     this.setState({ choice: event.target.value })
-    console.log('player: ',this.stringer(event.target.value))
+    console.log('player: ',this.stringer(this.state.choice))
     this.computer();
-    console.log(store.getState())
   }
 
   render() {
-    const {playerChoice} = this.props
+    const { computerChoice } = this.props
     return 	(
-        <div >
+        <div  style={parts}>
           <div>
             <h2>Player</h2>
             <hr style={hr}/>
@@ -65,11 +60,4 @@ class PlayerPage extends React.Component {
   }
 }
 
-
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({
-        computerChoice
-    }, dispatch)
-}
-
-export default connect(null, mapDispatchToProps)(Player);
+export default connect(null, {computerChoice})(PlayerPage);

@@ -6,6 +6,7 @@ import Signup from '../signup';
 import Ftp from '../ftp';
 import Navigation from '../navigation/';
 import Game from '../ppc';
+import App from '../todo';
 
 const Global = () =>
   <Router>

@@ -4,7 +4,7 @@ const INITIAL_STATE = {
 
 const applyState = (state, action) => ({
   ...state,
-  choice: action.playerChoice
+  choice: action.payload.choice
 });
 
 function playerReducer(state = INITIAL_STATE, action) {

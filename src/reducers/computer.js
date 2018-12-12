@@ -1,10 +1,9 @@
 const INITIAL_STATE = {
-  choice: ''
 };
 
 const applyState = (state, action) => ({
   ...state,
-  choice: action.choice
+  choice: action.payload.choice
 });
 
 function computerReducer(state = INITIAL_STATE, action) {

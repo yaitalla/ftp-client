@@ -3,11 +3,6 @@ import { connect } from 'react-redux';
 import { flexContainer, parts, hiddenHack,
   btnWrapper, hr, icon, btn, img, scoreHist } from './style';
 
-const Score = ({ history }) =>
-<div style={parts}>
-  <ScorePage history={history} />
-</div>
-
 class ScorePage extends React.Component {
   componentDidMount() {
   }
@@ -62,7 +57,7 @@ class ScorePage extends React.Component {
 
   render() {
     return 	(
-      <div>
+      <div  style={parts}>
         <div>
           <h2>Score</h2>
           <hr style={hr}/>
@@ -88,4 +83,4 @@ const mapStateToProps = (state) => ({
 });
 
 
-export default connect(mapStateToProps)(Score);
+export default connect(mapStateToProps, {})(ScorePage);

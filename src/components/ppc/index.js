@@ -12,27 +12,13 @@ import fu from './fu.png';
 import mi from './mi.png';
 import shifumi from '../navigation/shifumi.png';
 
-const Game = ({ history }) =>
-<div style={flexContainer}>
-  <GamePage history={history} />
-</div>
 
-class GamePage extends React.Component {
-  constructor(props) {
-    super(props);
-}
-  render() {
-    return 	(
+const Game = () => (
       <div style={flexContainer}>
-
         <Player />
         <Score />
         <Computer />
-
       </div>
-
-    );
-  }
-}
+);
 
 export default Game;
