@@ -8,6 +8,7 @@ const applyState = (state, action) => ({
 });
 
 function playerReducer(state = INITIAL_STATE, action) {
+  console.log({action})
   switch (action.type) {
     case 'PLAYER_CHOICE': {
       return applyState(state, action);

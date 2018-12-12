@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { flexContainer, parts, hiddenHack,
   btnWrapper, hr, icon, btn, img, scoreHist } from './style';
-import { computerChoice } from '../../actions';
+import { computerChoice, playerChoice } from '../../actions';
 import {bindActionCreators} from 'redux';
 import shi from './shi.png';
 import fu from './fu.png';
@@ -37,7 +37,9 @@ class PlayerPage extends React.Component {
     return computerMove;
   }
   updatePlayer(event){
+    console.log('props = ', this.props)
     event.preventDefault();
+    this.props.playerChoice(event.target.value)
     this.setState({ choice: event.target.value })
     console.log('player: ',this.stringer(event.target.value))
     this.computer();
@@ -66,10 +68,4 @@ class PlayerPage extends React.Component {
 }
 
 
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({
-        computerChoice
-    }, dispatch)
-}
-
-export default connect(null, mapDispatchToProps)(Player);
+export default connect(null, { playerChoice })(PlayerPage);

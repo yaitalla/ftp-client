@@ -7,6 +7,7 @@ import {computerChoice} from './actions';
 //import { Router } from 'react-router';
 window.store = store;
 window.computerChoice = computerChoice;
+console.log(store)
 ReactDOM.render((
   <Provider store={store}>
     <Global/>
