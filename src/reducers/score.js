@@ -1,19 +1,19 @@
 const INITIAL_STATE = {
-  playerChoice: '',
-  computerChoice: '',
+  pchoice: '',
+  cchoice: '',
   score: [],
   scoreMsg: ''
 };
 
 const applyState = (state, action) => ({
   ...state,
-  playerChoice: action.playerChoice,
-  computerChoice: action.computerChoice,
-  score: action.score,
-  scoreMsg: action.scoreMsg
+  pchoice: action.payload.pchoice,
+  cchoice: action.payload.cchoice,
+  score: action.payload.score
 });
 
 function scoreReducer(state = INITIAL_STATE, action) {
+//  console.log(action.payload)
   switch (action.type) {
     case 'SET_SCORE': {
       return applyState(state, action);

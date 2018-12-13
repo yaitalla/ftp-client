@@ -8,10 +8,13 @@ export const computerChoice = choice => ({
   payload: { choice }
 });
 
-export const setScore = (playerChoice, computerChoice) => ({
+export const setScore = (pchoice, cchoice, score) => ({
   type: 'SET_SCORE',
-  playerChoice,
-  computerChoice
+  payload: {
+    pchoice ,
+    cchoice,
+    score 
+  }
 })
 
 let nextTodoId = 0

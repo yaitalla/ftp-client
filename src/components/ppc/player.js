@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { flexContainer, parts, hiddenHack,
   btnWrapper, hr, icon, btn, img, scoreHist } from './style';
-import { computerChoice, playerChoice } from '../../actions';
+import { computerChoice, setScore } from '../../actions';
 import shi from './shi.png';
 import fu from './fu.png';
 import mi from './mi.png';
@@ -16,31 +16,62 @@ class PlayerPage extends React.Component {
       choice: shifumi,
     };
     this.updatePlayer = this.updatePlayer.bind(this);
+    this.setWinner = this.setWinner.bind(this);
+
   }
   stringer(rand){
     if (rand === shi) return 'Rock';
     return (rand === fu ? 'Cisors' : 'Paper');
   }
-  computer(){
+    updateScore(player, comput, playerWin){
+      let score = playerWin === "u win" ? "Winner - Looser" : "Looser - Winner";
+      if (playerWin === 'alité') { score = 'égalité' }
+      let newScore = store.getState().score.score ? store.getState().score.score : [];
+      newScore.push(score);
+      setTimeout(() => {
+          this.props.setScore(player, comput, newScore)
+      }, 1000);
+
+    }
+  setWinner(player, comput){
+    let ret = "";
+    if (player === comput) {
+      ret = 'egalité'
+    } else {
+      if (player === 'Rock'){
+        ret = (comput === 'Paper' ? 'Rock vs Paper, you loose'
+          : 'Rock vs Cisors, you win');
+      } else if (player === 'Paper'){
+        ret = (comput === 'Cisors' ? 'Paper vs Cisors, you loose'
+          : 'Paper vs Rock, you win');
+      } else {
+        ret = (comput === 'Rock' ? 'Cisors vs Rock, you loose'
+          : 'Cisors vs Paper, you win');
+      }
+    }
+    this.updateScore(player, comput, ret.substr(ret.length - 5));
+    return ret;
+  }
+  computer(playermove){
     const pos = [ shi, fu, mi ];
     const rand = pos[Math.floor(Math.random()*pos.length)];
-    this.setState({cc: rand})
     const computerMove = this.stringer(rand);
+    const playerMove = this.stringer(playermove);
     setTimeout(() => {
         console.log('ordi: ', computerMove);
         this.props.computerChoice(rand)
     }, 1000);
-    return computerMove;
+    this.setWinner(playerMove, computerMove);
   }
   updatePlayer(event){
     event.preventDefault();
     this.setState({ choice: event.target.value })
-    console.log('player: ',this.stringer(this.state.choice))
-    this.computer();
+    console.log('player: ',this.stringer(event.target.value))
+    this.computer(event.target.value);
   }
 
   render() {
-    const { computerChoice } = this.props
+    const {  setScore} = this.props
     return 	(
         <div  style={parts}>
           <div>
@@ -60,4 +91,4 @@ class PlayerPage extends React.Component {
   }
 }
 
-export default connect(null, {computerChoice})(PlayerPage);
+export default connect(null, {computerChoice, setScore})(PlayerPage);
