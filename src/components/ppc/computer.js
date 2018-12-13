@@ -1,25 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
+
 import { flexContainer, parts, hiddenHack,
   btnWrapper, hr, icon, btn, img, scoreHist } from './style';
 import shi from './shi.png';
 import fu from './fu.png';
 import { computerChoice } from '../../actions';
-
 import mi from './mi.png';
 import shifumi from '../navigation/shifumi.png';
-import { bindActionCreators } from "redux";
 
 
 
 class ComputerPage extends React.Component {
+  componentDidUpdate(){
+  //  console.log(this.props.choice)
+  }
+  componentDidMount(){
+  }
   constructor(props) {
     super(props);
-    store.subscribe(() => {
-      this.setState({computerChoice: store.getState().computer.choice})
-    })
     this.state = {
-      computerChoice: shifumi,
+      choice: shifumi,
     };
   }
 
@@ -32,7 +34,7 @@ class ComputerPage extends React.Component {
           <hr style={hr}/>
         </div>
         <div style={icon}>
-          <img style={img} src={this.state.computerChoice}/>
+          <img style={img} src={this.props.choice}/>
         </div>
         <div style={hiddenHack}></div>
 
@@ -42,7 +44,8 @@ class ComputerPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  computerChoicechoice: state.computerChoice
+  choice: store.getState().computer.choice
 });
 
-export default connect(mapStateToProps)(ComputerPage);
+
+export default connect(mapStateToProps, {computerChoice})(ComputerPage);

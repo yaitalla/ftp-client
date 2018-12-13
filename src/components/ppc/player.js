@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { flexContainer, parts, hiddenHack,
   btnWrapper, hr, icon, btn, img, scoreHist } from './style';
 import { computerChoice, playerChoice } from '../../actions';
-import {bindActionCreators} from 'redux';
 import shi from './shi.png';
 import fu from './fu.png';
 import mi from './mi.png';
@@ -12,6 +11,7 @@ import shifumi from '../navigation/shifumi.png';
 class PlayerPage extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       choice: shifumi,
     };

@@ -8,6 +8,12 @@ class ScorePage extends React.Component {
   }
   constructor(props) {
     super(props);
+    store.subscribe(() => {
+      this.setState({
+        cchoice: store.getState().computer.choice,
+        pchoice: store.getState().player.choice,
+      })
+    })
     this.state = {
       pchoice: '',
       cchoice: '',
@@ -17,25 +23,25 @@ class ScorePage extends React.Component {
     this.setWinner = this.setWinner.bind(this);
   }
 
-  setWinner(player, comput){
+  setWinner(play, comp){
+    const player = this.stringer(play);
+    const comput = this.stringer(comp);
     let ret = "";
     if (player === comput) {
       ret = 'egalité'
     } else {
       if (player === 'Rock'){
-        ret = (comput === 'Paper' ? 'Paper, you loose'
-          : 'Cisors, you win');
+        ret = (comput === 'Paper' ? 'Rock vs Paper, you loose'
+          : 'Rock vs Cisors, you win');
       } else if (player === 'Paper'){
-        ret = (comput === 'Cisors' ? 'Cisors, you loose'
-          : 'Rock, you win');
+        ret = (comput === 'Cisors' ? 'Paper vs Cisors, you loose'
+          : 'Paper vs Rock, you win');
       } else {
-        ret = (comput === 'Rock' ? 'Rock, you loose'
-          : 'Paper, you win');
+        ret = (comput === 'Rock' ? 'Cisors vs Rock, you loose'
+          : 'Cisors vs Paper, you win');
       }
     }
-    setTimeout(() => {
-      this.updateScore(ret.substr(ret.length - 5));
-    }, 1000);
+    this.updateScore(ret.substr(ret.length - 5));
     return ret;
   }
   stringer(rand){
