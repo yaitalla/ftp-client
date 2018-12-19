@@ -45,6 +45,16 @@ class SignupPage extends React.Component {
 		});
 	}
 
+	getData = () => {
+		const opts = {
+			method: 'GET',
+			url: 'http://',
+			headers: {
+				authorization: window.localStorage.get('token')
+			}
+		}
+	}
+
 	updateUser(event) {
 		const field = event.target.name;
 		const user = this.state.user;

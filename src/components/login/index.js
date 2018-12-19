@@ -38,7 +38,7 @@ class LoginPage extends React.Component {
 	//	console.log(this.props);
 		axios.post("http://localhost:4000/api/user/login/", data).then((res) => {
 			//console.log(res.headers)
-			console.log(res.data)
+			window.localStorage.setItem('token', res.data.token);
 			history.push('/ftp');
 
 		}).catch((err) => {
