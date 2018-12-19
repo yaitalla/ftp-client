@@ -37,12 +37,11 @@ class SignupPage extends React.Component {
 				"Access-Control-Allow-Origin": "*"
 			}
 		}
-		console.log(data);
 		axios.post("http://localhost:4000/api/user/register/", data).then((res) => {
-			console.log(res.headers)
+			console.log('clientLOG', res.data)
 			history.push('/');
 		}).catch((err) => {
-			console.log('YASLOG', err)
+			console.log('clientLOG', err)
 		});
 	}
 

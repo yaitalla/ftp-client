@@ -19,7 +19,7 @@ class PlayerPage extends React.Component {
     this.setWinner = this.setWinner.bind(this);
 
   }
-  stringer(rand){
+  stringer = (rand) => {
     if (rand === shi) return 'Rock';
     return (rand === fu ? 'Cisors' : 'Paper');
   }

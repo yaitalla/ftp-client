@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import { withRouter } from 'react-router-dom';
 import Form from './Form';
 import { flexwrap } from './style';
@@ -34,15 +34,12 @@ class LoginPage extends React.Component {
 		const data = {
 			'email': this.state.user.email,
 			'password': this.state.user.password,
-			'headers': {
-				"Access-Control-Allow-Origin": "*"
-			}
 		}
 	//	console.log(this.props);
 		axios.post("http://localhost:4000/api/user/login/", data).then((res) => {
 			//console.log(res.headers)
-			//history.push('/ftp');
-			console.log('YAS LOG', res)
+			console.log(res.data)
+			history.push('/ftp');
 
 		}).catch((err) => {
 			console.log('YASLOG', err)

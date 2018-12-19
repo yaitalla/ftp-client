@@ -4,7 +4,8 @@ import React from 'react';
 import store from './store';
 import { Provider } from 'react-redux';
 import {computerChoice} from './actions';
-//import { Router } from 'react-router';
+import { Router } from 'react-router';
+import routes from './routes';
 window.store = store;
 window.computerChoice = computerChoice;
 ReactDOM.render((
