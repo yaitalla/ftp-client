@@ -3,6 +3,11 @@ export const playerChoice = choice => ({
   payload: { choice }
 });
 
+export const setSession = token => ({
+  type: 'LOGIN',
+  payload: token
+})
+
 export const computerChoice = choice => ({
   type: 'COMPUTER_CHOICE',
   payload: { choice }
@@ -13,7 +18,7 @@ export const setScore = (pchoice, cchoice, score) => ({
   payload: {
     pchoice ,
     cchoice,
-    score 
+    score
   }
 })
 

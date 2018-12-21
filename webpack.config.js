@@ -36,5 +36,6 @@ module.exports = {
       template: "./src/static/index.html",
       filename: "./index.html"
     })
-  ]
+  ],
+  devServer: { historyApiFallback: true, }
 };

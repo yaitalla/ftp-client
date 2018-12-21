@@ -38,7 +38,7 @@ class SignupPage extends React.Component {
 			}
 		}
 		axios.post("http://localhost:4000/api/user/register/", data).then((res) => {
-			console.log('clientLOG', res.data)
+		//	console.log('clientLOG', res.data)
 			history.push('/');
 		}).catch((err) => {
 			console.log('clientLOG', err)
