@@ -35,16 +35,17 @@ class LoginPage extends React.Component {
 			'email': this.state.user.email,
 			'password': this.state.user.password,
 		}
+		/*
 		const headers = {
 			'x-access-token': window.localStorage.getItem('token')
 		}
+		*/
 	//	console.log(this.props);
-		axios.post("http://localhost:4000/api/user/login/", data, {headers: headers}).then((res) => {
-			if(res.data === '')
+		axios.post("http://localhost:4000/api/user/login/", data).then((res) => {
 			window.localStorage.setItem('token', res.data.token);
-		//	console.log(window.localStorage.token
+			console.log(res.data.token)
 //		if ()
-	//		history.push('/ftp');
+			history.push('/ftp');
 
 		}).catch((err) => {
 			console.log('YASLOG', err)
