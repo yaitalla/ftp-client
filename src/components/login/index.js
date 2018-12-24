@@ -17,6 +17,7 @@ class LoginPage extends React.Component {
 
 		this.state = {
 			errors: {},
+			message: 'For registered users',
 			user : {
 				email: '',
 				password: '',
@@ -43,12 +44,10 @@ class LoginPage extends React.Component {
 	//	console.log(this.props);
 		axios.post("http://localhost:4000/api/user/login/", data).then((res) => {
 			window.localStorage.setItem('token', res.data.token);
-			console.log(res.data.token)
-//		if ()
 			history.push('/ftp');
 
 		}).catch((err) => {
-			console.log('YASLOG', err)
+			this.setState({message: err.response.data.message})
 		});
 
 	}
@@ -62,11 +61,14 @@ class LoginPage extends React.Component {
 
 	render() {
 		return (
+			<div>
 			<Form
 				onSubmit={this.processForm}
 				onChange={this.updateUser}
 				errors={this.state.errors}
 				user={this.state.user}/>
+				{this.state.message}
+				</div>
 		);
 	}
 }

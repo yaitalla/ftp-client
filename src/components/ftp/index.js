@@ -9,14 +9,15 @@ class Ftp extends React.Component {
     super(props);
     this.state = {
       file: '',
-      token: window.localStorage.token
+      token: window.localStorage.token,
+      message: 'upload a file from your computer'
     };
     this.upload = this.upload.bind(this);
     this.getFiles = this.getFiles.bind(this);
+    this.download = this.download.bind(this);
   }
 
   getFiles = (event) => {
-
     const headers = {
 			'x-access-token': window.localStorage.getItem('token')
 		}
@@ -24,20 +25,29 @@ class Ftp extends React.Component {
     }).catch((err) => {
       console.log('YASLOG', err)
     });
-
   }
   onChange = (event) => {
-    console.log(event.target.value)
-    this.setState({file: event.target.value})
+    this.setState({file: event.target.files[0]})
   }
-
+  download = () => {
+    const headers = {
+			'x-access-token': window.localStorage.getItem('token')
+		}
+    axios.post("http://localhost:4000/api/ftp/download", {headers: headers}).then((res) => {
+      console.log(res.data.message)
+		}).catch((err) => {
+			console.log('YASLOG', err.response.headers)
+		});
+  }
   upload = (event) => {
     const headers = {
 			'x-access-token': window.localStorage.getItem('token')
 		}
-    console.log(this.state.file)
+    const data = new FormData()
+    data.append('file', this.state.file, this.state.file.name)
     event.preventDefault();
-    axios.post("http://localhost:4000/api/ftp/upload", this.state.file, {headers: headers}).then((res) => {
+    axios.post("http://localhost:4000/api/ftp/upload", data, {headers: headers}).then((res) => {
+      console.log(res.data.message)
 		}).catch((err) => {
 			console.log('YASLOG', err)
 		});
@@ -50,10 +60,10 @@ class Ftp extends React.Component {
           <input type="file" onChange={this.onChange} name="sampleFile"/>
           <button type="submit" style={btn} type="submit" >upload file</button>
         </form>
-        <form method="post" action="http://localhost:4000/api/ftp/download" encType="multipart/form-data">
-          <button style={btn} type="file" name="" value="dfile">download picture</button>
+        <form method="post" onSubmit={this.download}>
+          <button style={btn} type="submit" name="" value="dfile">download picture</button>
         </form>
-        <form method="get" onSubmit={this.getFiles} encType="multipart/form-data">
+        <form method="get" onSubmit={this.getFiles}>
           <button style={btn} type="submit" name="" value="dfile">get files</button>
         </form>
       </div>
