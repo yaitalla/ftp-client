@@ -9,16 +9,15 @@ const loginFrom = ({
 	onSubmit,
 	onChange,
 	errors,
-	user
+	user,
+	message
 }) => (
 
 	<div style={flexContainer}>
 			<form  style={flexForm} onSubmit={onSubmit} method="post" action="http://localhost:4000/users/login">
 				<ul style={flexUl}>
-					<li>
 						<h4 style={formTitle} >Login</h4>
-					</li>
-					<li>
+						<h5>{message}</h5>
 						<input
 							placeholder="Email..."
 							style={input}
@@ -26,8 +25,6 @@ const loginFrom = ({
 							name="email"
 							onChange={onChange}
 							value={user.email}/>
-					</li>
-					<li>
 						<input
 							style={input}
 							placeholder="Password..."
@@ -36,21 +33,13 @@ const loginFrom = ({
 							name="password"
 							onChange={onChange}
 							value={user.password}/>
-					</li>
-					<li>
 						<button style={submitBtn} type="submit"  primary="true">
 							Submit
 						</button>
-					</li>
 				</ul>
 
 			</form>
 
-				<div style={flexInfo}>
-					<h2 style={infoTitle}>Welcome to Whis</h2>
-					<i  aria-hidden="true"></i>
-					<p>Digital consulting</p>
-				</div>
 	</div>
 
 );
@@ -59,7 +48,8 @@ loginFrom.propTypes = {
 	onSubmit: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
 	errors: PropTypes.object.isRequired,
-	user: PropTypes.object.isRequired
+	user: PropTypes.object.isRequired,
+	message: PropTypes.string.isRequired
 };
 
 export default loginFrom;

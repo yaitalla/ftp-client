@@ -2,18 +2,18 @@ const INITIAL_STATE = {
   choice: ''
 };
 
-const applyState = (state, action) => ({
+const applyState = (state, { choice }) => ({
   ...state,
-  choice: action.payload.choice
+  choice
 });
 
 function computerReducer(state = INITIAL_STATE, action) {
 //  console.log(action.type)
   switch (action.type) {
-    case 'COMPUTER_CHOICE': {
+    case 'COMPUTER_CHOICE':
       return applyState(state, action);
-    }
-    default: return state;
+    default:
+      return { ...state};
   }
 }
 

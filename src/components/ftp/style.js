@@ -2,13 +2,13 @@ export const container = {
   "display": "flex",
   alignItems: "center",
   flexDirection: "column",
-  border: "1px solid silver",
   justifyContent: "center",
   height: "350px",
+  width: "100%"
 }
 
 export const btn = {
-  width: "15vh",
+  width: "100px",
   fontSize: "15px",
   borderRadius: "40px",
   color: "white",

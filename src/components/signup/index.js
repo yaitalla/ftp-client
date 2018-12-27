@@ -1,17 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Form from './Form';
-import { flexwrap } from './style';
 import axios from 'axios';
 
 
-const Signup = ({ history }) =>
-<div style={flexwrap}>
-	<SignupPage history={history} />
-</div>
 
 
-class SignupPage extends React.Component {
+class Signup extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -22,12 +17,9 @@ class SignupPage extends React.Component {
 				password: '',
 			}
 		};
-
-		this.updateUser = this.updateUser.bind(this);
-		this.processForm = this.processForm.bind(this);
 	}
 
-	processForm(event) {
+	processForm = (event) => {
 		const { history } = this.props;
 		event.preventDefault();
 		const data = {
@@ -44,7 +36,7 @@ class SignupPage extends React.Component {
 			console.log('clientLOG', err)
 		});
 	}
-
+/*
 	getData = () => {
 		const opts = {
 			method: 'GET',
@@ -54,8 +46,8 @@ class SignupPage extends React.Component {
 			}
 		}
 	}
-
-	updateUser(event) {
+*/
+	updateUser = (event) => {
 		const field = event.target.name;
 		const user = this.state.user;
 		user[field] = event.target.value;

@@ -15,10 +15,7 @@ const loginFrom = ({
 	<div style={flexContainer}>
 			<form  style={flexForm} onSubmit={onSubmit} method="post" action="http://localhost:4000/users/login">
 				<ul style={flexUl}>
-					<li>
 						<h4 style={formTitle} >Signup</h4>
-					</li>
-					<li>
 						<input
 							placeholder="Email..."
 							style={input}
@@ -26,8 +23,6 @@ const loginFrom = ({
 							name="email"
 							onChange={onChange}
 							value={user.email}/>
-					</li>
-					<li>
 						<input
 							style={input}
 							placeholder="Password..."
@@ -36,21 +31,14 @@ const loginFrom = ({
 							name="password"
 							onChange={onChange}
 							value={user.password}/>
-					</li>
-					<li>
 						<button style={submitBtn} type="submit"  primary="true">
 							Submit
 						</button>
-					</li>
 				</ul>
 
 			</form>
 
-				<div style={flexInfo}>
-					<h2 style={infoTitle}>Welcome to Whis</h2>
-					<i  aria-hidden="true"></i>
-					<p>Digital consulting</p>
-				</div>
+				
 	</div>
 
 );

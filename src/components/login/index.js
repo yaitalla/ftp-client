@@ -5,13 +5,8 @@ import { flexwrap } from './style';
 import axios from 'axios';
 
 
-const Login = ({ history }) =>
-<div style={flexwrap}>
-	<LoginPage history={history} />
-</div>
 
-
-class LoginPage extends React.Component {
+class Login extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -33,8 +28,8 @@ class LoginPage extends React.Component {
 
 		event.preventDefault();
 		const data = {
-			'email': this.state.user.email,
-			'password': this.state.user.password,
+			email: this.state.user.email,
+			password: this.state.user.password,
 		}
 		/*
 		const headers = {
@@ -66,8 +61,8 @@ class LoginPage extends React.Component {
 				onSubmit={this.processForm}
 				onChange={this.updateUser}
 				errors={this.state.errors}
-				user={this.state.user}/>
-				{this.state.message}
+				user={this.state.user}
+				message={this.state.message}/>
 				</div>
 		);
 	}

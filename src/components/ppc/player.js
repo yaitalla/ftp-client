@@ -15,15 +15,13 @@ class PlayerPage extends React.Component {
     this.state = {
       choice: shifumi,
     };
-    this.updatePlayer = this.updatePlayer.bind(this);
-    this.setWinner = this.setWinner.bind(this);
 
   }
   stringer = (rand) => {
     if (rand === shi) return 'Rock';
     return (rand === fu ? 'Cisors' : 'Paper');
   }
-    updateScore(player, comput, playerWin){
+    updateScore = (player, comput, playerWin) => {
       let score = playerWin === "u win" ? "Winner - Looser" : "Looser - Winner";
       if (playerWin === 'alité') { score = 'égalité' }
       let newScore = store.getState().score.score ? store.getState().score.score : [];
@@ -33,7 +31,7 @@ class PlayerPage extends React.Component {
       }, 1000);
 
     }
-  setWinner(player, comput){
+  setWinner = (player, comput) => {
     let ret = "";
     if (player === comput) {
       ret = 'egalité'
@@ -52,7 +50,7 @@ class PlayerPage extends React.Component {
     this.updateScore(player, comput, ret.substr(ret.length - 5));
     return ret;
   }
-  computer(playermove){
+  computer = (playermove) => {
     const pos = [ shi, fu, mi ];
     const rand = pos[Math.floor(Math.random()*pos.length)];
     const computerMove = this.stringer(rand);
@@ -63,7 +61,7 @@ class PlayerPage extends React.Component {
     }, 1000);
     this.setWinner(playerMove, computerMove);
   }
-  updatePlayer(event){
+  updatePlayer = (event) => {
     event.preventDefault();
     this.setState({ choice: event.target.value })
     console.log('player: ',this.stringer(event.target.value))
@@ -71,7 +69,6 @@ class PlayerPage extends React.Component {
   }
 
   render() {
-    const {  setScore} = this.props
     return 	(
         <div  style={parts}>
           <div>

@@ -9,10 +9,10 @@ const applyState = (state, action) => ({
 
 function playerReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case 'PLAYER_CHOICE': {
+    case 'PLAYER_CHOICE':
       return applyState(state, action);
-    }
-    default: return state;
+    default:
+      return state;
   }
 }
 

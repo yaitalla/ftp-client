@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { flexContainer, parts, hiddenHack,
-  btnWrapper, hr, icon, btn, img, scoreHist } from './style';
-import { setScore } from '../../actions';
+import { parts, hr, scoreHist } from './style';
 
 class ScorePage extends React.Component {
   componentDidUpdate() {
@@ -18,7 +16,7 @@ class ScorePage extends React.Component {
   }
 
 
-  stringer(rand){
+  stringer = (rand) => {
     if (rand === shi) {
       return 'Rock';
     }
@@ -47,10 +45,10 @@ class ScorePage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  score: store.getState().score.score,
-  pchoice: store.getState().score.pchoice,
-  cchoice: store.getState().score.cchoice,
-  scoreMsg: store.getState().score.scoreMsg,
+  score: state.score.score,
+  pchoice: state.score.pchoice,
+  cchoice: state.score.cchoice,
+  scoreMsg: state.score.scoreMsg,
 });
 
 

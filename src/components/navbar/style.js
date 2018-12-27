@@ -12,7 +12,7 @@ export const noBullet = {
 }
 
 export const btn = {
-  width: "25vh",
+  width: "100px",
   fontSize: "15px",
   borderRadius: "40px",
   color: "white",
